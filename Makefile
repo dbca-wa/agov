@@ -7,6 +7,7 @@ APP_DIR=${PWD}/app
 APP_URI=http://agov.dev
 APP_PASSWORD=password
 
+COMPOSER_CMD=composer
 DRUSH_CMD=drush -r ${APP_DIR}
 DB_URL=mysql://drupal:drupal@localhost/local
 INSTALL_OPTIONS=configurable_profile_dependencies.configurable_modules[agov_default_content]=0 \
@@ -47,7 +48,7 @@ clean:
 
 init:
 	@echo ${cc_green}">>> Installing dependencies..."${cc_end}
-	composer install --prefer-dist --no-progress
+	${COMPOSER_CMD} install --prefer-dist --no-progress
 
 mkdirs:
 	@echo ${cc_green}">>> Creating dirs..."${cc_end}
@@ -64,7 +65,7 @@ make-core:
 	cd ${APP_DIR} && ../bin/drush make -y profiles/agov/drupal-org-core.make --no-cache --prepare-install
 
 make: make-contrib make-core
-	cd ${APP_DIR} && composer install --prefer-dist --no-progress
+	cd ${APP_DIR} && ${COMPOSER_CMD} install --prefer-dist --no-progress
 
 install:
 	cd ${APP_DIR} && ../bin/drush site-install agov -y --site-name=aGov --account-pass='${APP_PASSWORD}' --db-url=${DB_URL}
