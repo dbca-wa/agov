@@ -10,4 +10,5 @@ $databases['default']['default'] = array (
   'driver' => $_ENV['DB_TYPE'],
   'prefix' => '',
 );
+$settings['hash_salt'] = $_ENV['DRUPAL_HASH_SALT'];
 $settings['install_profile'] = 'agov';
