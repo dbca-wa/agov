@@ -13,4 +13,4 @@ cp settings.s2i.php app/sites/default/settings.php
 mv /tmp/src/app/* $DEST
 
 # Fix source directory permissions
-fix-permissions ./
+fix-permissions $DEST
