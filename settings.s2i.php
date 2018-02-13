@@ -1,5 +1,10 @@
 <?php
 
+// auto-fix HTTPS if behind a load balancer
+if (getenv('HTTPS') !== 'on' && getenv('HTTP_X_FORWARDED_PROTO') === 'https') {
+  $_SERVER['HTTPS'] = 'on';
+}
+
 // Settings for OpenShift S2I deployment
 $databases['default']['default'] = array (
   'database' => $_ENV['DB_NAME'],
@@ -12,3 +17,5 @@ $databases['default']['default'] = array (
 );
 $settings['hash_salt'] = $_ENV['DRUPAL_HASH_SALT'];
 $settings['install_profile'] = 'agov';
+
+
