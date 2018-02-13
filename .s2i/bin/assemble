@@ -11,6 +11,8 @@ make COMPOSER_CMD=`pwd`/composer.phar build
 cp settings.s2i.php app/sites/default/settings.php
 chmod 644 app/sites/default/settings.php
 
+rmdir app/sites/default/files/tmp
+
 mv /tmp/src/app/* $DEST
 
 # Fix source directory permissions
